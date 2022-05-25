@@ -11,10 +11,6 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/favicon.ico', (req, res, next) => { // ignore favicon
-  res.status(204).end();
-});
-
 app.use('/admin', adminRoutes); // only paths starting with admin will go into adminRoutes
 app.use(shopRoutes);
 
