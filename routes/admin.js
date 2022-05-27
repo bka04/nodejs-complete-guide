@@ -1,5 +1,3 @@
-//handles creation of products, which admin of the shop can do
-
 const path = require('path');
 
 const express = require('express');
@@ -12,7 +10,14 @@ const products = []; //can receive new elements even if constant
 
 // /admin/add-product => GET
 router.get('/add-product', (req, res, next) => { // handles request
-  res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+  //res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+  res.render('add-product', {
+    pageTitle: 'Add Product',
+    path: '/admin/add-product',
+    formsCSS: true,
+    productCSS: true,
+    activeAddProduct: true
+  });
 });
 
 // /admin/add-product => POST
