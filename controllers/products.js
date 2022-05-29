@@ -1,4 +1,4 @@
-const products = []; //can receive new elements even if constant
+const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
   // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
@@ -12,11 +12,14 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  products.push({ title: req.body.title });
+  const product = new Product(req.body.title);
+  product.save();
   res.redirect("/");
 };
 
 exports.getProducts = (req, res, next) => {
+  const products = Product.fetchAll();
+  
   //res.sendFile(path.join(rootDir, 'views', 'shop.html')); // use path.join so it works on OS that use different slashes (eg linux vs windows)
   res.render('shop', {
     prods: products,
