@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { isAbsolute } = require("path");
 const path = require("path");
 
 const rootDir = require("../util/path");
@@ -15,8 +16,11 @@ const getProductsFromFile = (cb) => { // async, so we use callback
 };
 
 module.exports = class Product {
-  constructor(t) {
-    this.title = t;
+  constructor(title, imageUrl, description, price) {
+    this.title = title;
+    this.imageUrl = imageUrl;
+    this.description = description;
+    this.price = price;
   }
 
   save() {
