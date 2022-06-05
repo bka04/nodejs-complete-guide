@@ -12,6 +12,12 @@ exports.getProducts = (req, res, next) => {
   //res.sendFile(path.join(rootDir, 'views', 'shop.html')); // use path.join so it works on OS that use different slashes (eg linux vs windows)
 };
 
+exports.getProduct = (req, res, next) => {
+  const prodId = req.params.productId; // routed with a colon
+  console.log(prodId);
+  res.redirect('/');
+}
+
 exports.getIndex = (req, res, next) => {
   Product.fetchAll((products) => {
     res.render("shop/index", {
